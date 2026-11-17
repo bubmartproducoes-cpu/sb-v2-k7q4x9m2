@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<title>Storyboard - Freight Atlas - Vídeo 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Cores FIXAS de alto contraste (nada de variáveis de tema). */
+*{box-sizing:border-box}
+body{margin:0;background:#0b0f14;color:#ffffff;font:18px/1.45 "Segoe UI",Arial,sans-serif}
+#topo{position:sticky;top:0;z-index:20;background:#05080c;border-bottom:3px solid #ffd54a;padding:10px 16px}
+#topo h1{margin:0 0 6px;font-size:22px;color:#ffd54a}
+.linha{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0}
+button,select,input,textarea{font:inherit;color:#ffffff;background:#1d2733;border:2px solid #8fb4ff;border-radius:6px;padding:6px 10px}
+button{cursor:pointer;font-weight:700}
+button:hover{background:#2c3e55}
+button.forte{background:#ffd54a;color:#000;border-color:#ffd54a}
+button.forte:hover{background:#ffe587}
+textarea{width:100%;resize:vertical}
+input[type=number]{width:90px}
+#total{font-size:20px;font-weight:700;padding:4px 12px;border-radius:6px}
+.ok{background:#1b7f3b;color:#fff}.alerta{background:#c62828;color:#fff}
+#linha-tempo{display:flex;height:34px;border:2px solid #fff;border-radius:6px;overflow:hidden;margin-top:6px}
+#linha-tempo div{overflow:hidden;white-space:nowrap;font-size:12px;font-weight:700;color:#000;text-align:center;line-height:30px;border-right:1px solid #000;cursor:pointer;min-width:2px}
+.s-pendente{background:#cfcfcf}.s-gerada{background:#7ab8ff}.s-aprovada{background:#5fe08a}
+#aviso-fora{display:none;margin-top:4px;font-weight:700}
+main{padding:12px 16px 60px;max-width:1500px;margin:0 auto}
+.ato{margin:22px 0 6px;font-size:22px;font-weight:700;color:#ffd54a;border-bottom:2px solid #ffd54a}
+.cartao{background:#131b26;border:3px solid #8fb4ff;border-radius:10px;margin:10px 0}
+.cartao.fechado .corpo{display:none}
+.cab{display:flex;gap:14px;align-items:center;padding:8px 12px;cursor:pointer;flex-wrap:wrap}
+.cab:hover{background:#1c2736}
+.cid{font-size:26px;font-weight:800;color:#ffd54a;min-width:70px}
+.tempo{font-size:16px;color:#ffffff}
+.mini{width:96px;height:54px;object-fit:cover;border:2px solid #fff;border-radius:4px;background:#000}
+.sem-mini{width:96px;height:54px;border:2px dashed #8fb4ff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#c9d8ff}
+.etq{padding:2px 10px;border-radius:12px;font-weight:700;font-size:15px;color:#000}
+.resumo{flex:1;min-width:200px;color:#d6e2ff;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.corpo{padding:10px 14px 14px;border-top:2px solid #8fb4ff}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.texto{background:#05080c;border:2px solid #4b5f7d;border-radius:8px;padding:8px 12px}
+.texto b{color:#ffd54a}
+.chip{display:inline-block;background:#ffd54a;color:#000;font-weight:700;border-radius:10px;padding:0 8px;margin:2px 4px 2px 0;font-size:14px}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}
+label.rot{display:block;font-weight:700;color:#ffd54a;margin-bottom:3px}
+.dica{font-size:15px;color:#cfe0ff;margin-top:3px}
+.efs label{display:inline-block;margin:3px 8px 3px 0;padding:3px 8px;border:2px solid #4b5f7d;border-radius:8px;cursor:pointer}
+.efs label.on{border-color:#ffd54a;background:#3a3410}
+.efs input{margin-right:5px}
+img.grande{max-width:100%;max-height:340px;border:2px solid #fff;border-radius:6px;background:#000;display:block;margin-bottom:8px}
+a.envio{display:inline-block;padding:7px 12px;border-radius:6px;text-decoration:none;font:inherit;cursor:pointer}
+.envio{background:#1d4ed8;color:#fff;border:2px solid #93c5fd;font-weight:700}
+.prompt{background:#05080c;border:2px solid #4b5f7d;font-family:Consolas,monospace;font-size:15px;min-height:90px}
+.mudou{color:#fff;background:#c62828;padding:2px 8px;border-radius:6px;font-weight:700;display:none}
+.sem-sujeito{color:#ffb4a0}
+#dica-geral{font-size:15px;color:#cfe0ff}
+@media(max-width:900px){.duas{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="topo">
+  <h1>Storyboard — Freight Atlas — Vídeo 2</h1>
+  <div class="linha">
+    <span id="total"></span>
+    <label>Palavras/min: <input type="number" id="wpm" min="80" max="260" step="5"></label>
+    <label>Filtro: <select id="filtro">
+      <option value="todos">Todas as cenas</option><option value="pendente">Pendentes</option>
+      <option value="gerada">Geradas</option><option value="aprovada">Aprovadas</option>
+      <option value="sem_sujeito">Sem sujeito escrito</option></select></label>
+    <button id="b-abrir-todos">Abrir todos</button><button id="b-fechar-todos">Fechar todos</button>
+    
+<label>Quem sugere: <select id="autor"><option>Flávio</option><option>Renato</option></select></label>
+<a class="btn envio" id="b-todas" target="_blank" rel="noopener" href="https://mail.google.com">Enviar todas por e-mail</a><button onclick="copiarJsonSug(this)">Copiar sugestões (JSON)</button>
+    <input type="file" id="arq" accept=".json,application/json" style="display:none">
+  </div>
+  <div id="aviso-fora"></div>
+  <div id="linha-tempo" title="Linha do tempo proporcional ao tempo de voz"></div>
+  <div id="dica-geral">Edite qualquer campo e clique em <b>Enviar sugestão</b> ao lado dele: o Gmail abre com a sugestão pronta (para bubmartproducoes@gmail.com) e o texto também é copiado. É só apertar Enviar no Gmail. Suas edições ficam salvas neste navegador. Escolha antes quem está sugerindo (Flávio ou Renato).</div>
+</div>
+<main id="lista"></main>
+
+<script id="boot" type="application/json">{"dic": {"luz": {"ALVORADA": ["Alvorada rosa e dourada", "soft pink and gold light at dawn, low sun, long gentle shadows, cool blue shadows", "começo, calma, esperança"], "GOLDEN": ["Golden hour (fim de tarde dourado)", "warm golden-hour sunlight from a low angle, long soft shadows, glowing highlights on the water", "nobre, épico, cara de cinema"], "AZUL": ["Hora azul (crepúsculo)", "blue hour twilight, deep blue sky with a thin orange band on the horizon, lights beginning to glow", "tensão calma, mistério; luzes acesas se destacam"], "NOITE": ["Noite", "night scene, moonlight on the water, lights glowing in the dark", "isolamento, perigo; a atenção vai para as luzes"], "MEIODIA": ["Meio-dia claro", "bright midday sun, clear sky, crisp contrast, vivid deep blue water", "informativo, limpo, tom de documentário"], "NUBLADO": ["Nublado, luz difusa", "overcast sky, soft diffuse light, muted grey-teal tones, no harsh shadows", "sério, pesado, sensação de crise"], "CONTRALUZ": ["Contraluz", "strong backlight with the sun low behind the subject, rim light outlining the shapes, glare on the water", "dramático, silhueta forte"], "ABISSAL": ["Abissal (quase escuro)", "deep dark blue water with only a faint glow of light from the surface far above", "pesado, opressivo, escala enorme"]}, "efeitos": {"NEVOA": ["Névoa", "soft haze and mist", "profundidade e atmosfera; suaviza o fundo"], "BRILHO": ["Brilho na água", "sparkling reflections on the water", "riqueza e movimento"], "ESPUMA": ["Espuma e respingos", "white wake and spray", "velocidade e força"], "PROFUNDIDADE": ["Miniatura (tilt-shift)", "shallow depth of field, tilt-shift miniature look", "curiosidade e escala; pode parecer brinquedo"], "RAIOS": ["Raios de luz", "visible light rays through haze or water", "grandeza, solenidade"], "FLARE": ["Reflexo de lente", "subtle lens flare", "brilho de câmera real; pode parecer artificial"], "GRADE_QUENTE": ["Cor laranja e verde-azulado", "warm orange and teal color grade", "visual de cinema"], "GRADE_FRIA": ["Cor fria e dessaturada", "cold desaturated color grade", "frio, sério, notícia dura"], "CHUVA": ["Chuva leve", "light rain, wet surfaces", "melancolia"], "ONDAS": ["Mar agitado", "choppy sea with whitecaps", "perigo, energia"], "GRAO": ["Grão de filme", "subtle film grain", "textura de filme (já usado em todos)"]}, "arte": [["A. Fotorrealista cinematográfico (o que já usamos)", "photorealistic cinematic photograph, subtle film grain", "parece cinema; risco: cara de 'IA' se a luz for genérica"], ["B. Drone documental", "documentary drone footage look, natural colors, neutral grade, sharp detail", "parece reportagem; mais crível e menos dramático"], ["C. Miniatura / diorama", "miniature diorama look, tilt-shift shallow depth of field, tiny detailed model ships on a model sea", "didático e curioso; pode parecer brinquedo"], ["D. Ilustração editorial", "flat editorial illustration, bold simple shapes, limited color palette, subtle paper texture", "identidade própria, foge do 'foto de IA'; menos realismo"], ["E. Recorte de papel em camadas", "layered paper-cut art, stacked paper layers with soft shadows, handmade look", "tátil e original; mais trabalhoso para manter"], ["F. Filme 16 mm granulado", "16mm film look, heavy grain, slightly desaturated, soft halation", "nostálgico, tom de documentário antigo"], ["G. 3D isométrico limpo", "clean isometric 3D render, matte materials, soft studio lighting, simple background", "explicativo, bom para tipos de navio e rotas"]], "restricoes": "no text, no logos, no ship names, no people visible, no watermark"}, "dados": {"video": "video2", "wpm": 150, "roteiro_en": "roteiros/video2_en_v4.md", "roteiro_pt": "roteiros/video2_pt_v3.md", "pt_sem_bloco_en": ["A5", "CONTA", "CONTA2"], "cenas": [{"id": "G1", "ato": "HOOK", "trecho_en": "A phone case leaves Shenzhen, China, in a plastic bag with a name and an address on it. It crosses the Pacific in a cargo plane, with a fuel stop in Alaska. The flight costs about 63 cents. The tax waiting at the border costs more than the flight.", "trecho_pt": "Em maio de 2026, o imposto de importação sobre compras internacionais de até 50 dólares caiu para zero. Só que uma capinha de celular de 25 reais, vinda da China, continua pagando uns 5 reais de imposto para entrar no Brasil. É mais do que custa trazer essa mesma capinha de avião, do outro lado do mundo até aqui.", "fatos": ["F17", "F76"], "palavras_en": 49, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/g1/imgs/G1.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "G2", "ato": "HOOK", "trecho_en": "Until May 2, 2025, that tax was zero. In the 2024 fiscal year, 1.36 billion parcels entered the United States that way, and most of them came from China and Hong Kong. Then the rule ended. Within months, at least 88 of the world's postal operators had suspended some or all of their service to America. Years earlier, federal auditors had counted how many parcels get inspected at the border, and the published report has that number blacked out.", "trecho_pt": "No mês seguinte à mudança, o país recebeu mais de 28 milhões de encomendas de fora, mais que o dobro de um ano antes. Foi tanto pacote que, segundo um coordenador da Receita Federal, o órgão precisou pedir às transportadoras que parassem de mandar avião para Guarulhos.", "fatos": ["F6", "F7", "F1", "F3", "F73", "F9"], "palavras_en": 79, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/G2.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "G3", "ato": "HOOK", "trecho_en": "This is the trip of one of those parcels: a ten-dollar phone case, bought by someone in Ohio. By the end, you will know who pays that tax, and who found a way around it.", "trecho_pt": "Este vídeo acompanha uma dessas encomendas, a capinha, da fábrica em Shenzhen até a portaria de um prédio em São Paulo. No fim, você vai saber quem cobra esses 5 reais, e quem ficou com a conta do imposto que sumiu.", "fatos": ["F24"], "palavras_en": 35, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "A1", "ato": "ACT 1 — ORDER", "trecho_en": "The trip starts with a thumb on a screen in Ohio. Someone orders the case, and the order lands in a factory district in Shenzhen, in China's Guangdong province.", "trecho_pt": "A viagem começa com um dedo na tela, em São Paulo. Alguém escolhe a capinha no aplicativo, paga 25 reais e fecha o pedido. O preço é exemplo nosso, dentro do que as lojas cobravam em novembro.", "fatos": [], "palavras_en": 29, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/A1.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "A2", "ato": "ACT 1 — ORDER", "trecho_en": "A worker slides the case into a plastic bag and sticks a label on it. Platforms that sell this way built their name on skipping the warehouse. Reuters reported in 2024 that Shein, Temu and TikTok Shop ship most products straight from factories in China, by air, each order in its own addressed package. The shelf is the factory floor.", "trecho_pt": "Do outro lado do mundo, o pedido cai num bairro de fábricas de Shenzhen, na província de Guangdong. Numa bancada, uma funcionária enfia a capinha num saquinho plástico e cola a etiqueta com nome e endereço. Esse jeito de vender ficou famoso por pular o estoque do meio do caminho. Em 2024, a agência Reuters mostrou que Shein, Temu e TikTok Shop mandam a maior parte dos produtos direto da fábrica na China, de avião, cada pedido no seu pacotinho.", "fatos": ["F18"], "palavras_en": 60, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "A3", "ato": "ACT 1 — ORDER", "trecho_en": "By now the case has a tracking code, a destination and no idea about either. Its buyer has already checked the tracking page, and the bag is still on the workbench.", "trecho_pt": "As lojas que vendem assim para o Brasil, com o selo da Receita Federal, têm nomes que você conhece de cor: Shein, Shopee, AliExpress, Mercado Livre, Temu.", "fatos": [], "palavras_en": 31, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "A4", "ato": "ACT 1 — ORDER", "trecho_en": "Next comes a truck, and after the truck, a choice.", "trecho_pt": "É nessa hora que a capinha ganha um código de rastreio. E você começa a abrir o app toda hora, igual quem abre a geladeira esperando aparecer comida nova.", "fatos": [], "palavras_en": 10, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "B1", "ato": "ACT 2 — FLIGHT", "trecho_en": "The truck carries the case to a sorting hub, where it joins a river of identical bags. Cargo leaving southern China has a fast way and a slow way across the Pacific.", "trecho_pt": "No centro de triagem, o saquinho some no meio de uma montanha de saquinhos iguais. Carga que sai do sul da China para o Brasil tem um caminho rápido e um caminho lento.", "fatos": [], "palavras_en": 32, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/B1.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "B2", "ato": "ACT 2 — FLIGHT", "trecho_en": "By air, the flight to the US West Coast takes twelve to fourteen hours. By sea, the same crossing takes 14 to 18 days.", "trecho_pt": "O rápido é o avião: de Shenzhen a Guarulhos, cerca de 1 dia e 5 horas. O lento é o navio: do porto de Shekou, vizinho de Shenzhen, até Santos, uns 27 dias.", "fatos": ["F21"], "palavras_en": 24, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "B3", "ato": "ACT 2 — FLIGHT", "trecho_en": "Speed has a price. At the end of 2025, a public index put air freight from China to North America at 6.26 dollars a kilo. Weeks earlier, at the holiday peak, the same index had passed eight dollars. By sea, a public index put a forty-foot container from Asia to the West Coast at about 8,100 dollars in September 2026.", "trecho_pt": "A pressa custa caro. Em setembro de 2026, o frete aéreo da China para o Brasil saía de cinco a sete dólares e meio o quilo, na tabela de uma empresa de frete. Só que a capinha, já embalada, pesa uns 100 gramas. Na ponta do lápis, o voo dela sai por uns 3 a 4 reais.", "fatos": ["F75", "F60", "F61"], "palavras_en": 60, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "B4", "ato": "ACT 2 — FLIGHT", "trecho_en": "An order with a buyer waiting cannot spend two weeks in a steel box, so it flies. Enough of them fly to create their own traffic. In 2024, Cargo Facts Consulting estimated that Shein and Temu together moved about nine thousand tonnes a day out of China. Forbes calculated that this fills roughly 88 Boeing 777 freighters, every day.", "trecho_pt": "Pedido com comprador esperando vai de avião, e é muita coisa voando. Em 2024, a consultoria Cargo Facts estimou que Shein e Temu, juntas, despachavam umas 9 mil toneladas por dia da China. A revista Forbes fez a conta e chegou a uns 88 cargueiros Boeing 777 lotados, todo santo dia.", "fatos": ["F21", "F19"], "palavras_en": 59, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/B4.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "B5", "ato": "ACT 2 — FLIGHT", "trecho_en": "Many of those freighters land in Alaska on the way. A stop to refuel in Anchorage lets a plane leave Asia carrying more cargo. In 2025, Anchorage handled 3.9 million metric tons of cargo, more than any other airport in North America. Only Hong Kong and Shanghai handled more, anywhere in the world. Memphis, home of the FedEx superhub, fell 21 percent that year, and Anchorage passed it. Some of that cargo never leaves the plane, which is one way to visit Alaska.", "trecho_pt": "Uma parte desses aviões pousa aqui. Em julho de 2026, numa audiência no Congresso, o coordenador de aduana da Receita, Fabrício Betto, contou que o órgão teve de pedir às transportadoras que parassem de mandar avião para Guarulhos, porque a unidade de Guarulhos não conseguia processar o volume. A saída foi abrir outra porta: Viracopos, em Campinas, ia passar a receber dois voos por semana, com 90 toneladas de encomendas, direto da China. Capinha e blusinha conseguiram o que nem feriado prolongado consegue: lotar Guarulhos.", "fatos": ["F17", "F16"], "palavras_en": 83, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/B5.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "B6", "ato": "ACT 2 — FLIGHT", "trecho_en": "Our case weighs about 100 grams, and that weight is our assumption. At the index rate, its seat across the Pacific costs about 63 cents. For that money it gets no window, no meal and no say in the route.", "trecho_pt": "A nossa capinha embarca. São uns 18 mil quilômetros em linha reta até São Paulo.", "fatos": ["F24", "F76"], "palavras_en": 40, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "B7", "ato": "ACT 2 — FLIGHT", "trecho_en": "Some of its cousins have stopped flying altogether.", "trecho_pt": "Só que tem capinha que viaja sem essa pressa toda.", "fatos": [], "palavras_en": 8, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "C1", "ato": "ACT 3 — THE OTHER ROAD", "trecho_en": "After 2025, Temu stepped up bulk shipments of its best-selling products to warehouses in the United States. More of its orders now leave from a shelf near the customer.", "trecho_pt": "Existe capinha que sai da fábrica sem dono. Ela vai num lote, para o estoque de alguma loja, e só encontra comprador depois. Essa viaja de navio, dentro de um contêiner de aço, daqueles que você vê empilhados na beira da estrada perto do porto.", "fatos": ["F20"], "palavras_en": 29, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/C1.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "C2", "ato": "ACT 3 — THE OTHER ROAD", "trecho_en": "Bulk cargo travels by sea, in standard steel containers. The industry counts them in TEU, short for twenty-foot equivalent unit. One of the largest container ships in the world, the MSC Irina, is built for 24,346 of them, stacked up to 26 layers high.", "trecho_pt": "Um dos maiores porta-contêineres do mundo, o MSC Irina, carrega o equivalente a 24.346 contêineres de vinte pés, em pilhas de até 26 andares.", "fatos": ["F29", "F23"], "palavras_en": 44, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/C2.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "C3", "ato": "ACT 3 — THE OTHER ROAD", "trecho_en": "From Yantian, the container port of Shenzhen, the crossing to Los Angeles and Long Beach takes 14 to 18 days. A phone case in that stack has no buyer, no label and no tracking code. It sits in the dark, in a bag, in a box, in a stack. Nobody aboard knows it exists. It has never been so well behaved.", "trecho_pt": "De Shekou a Santos, são uns 27 dias de mar. Durante quase todo esse tempo, a capinha sem dono fica no escuro, dentro do saquinho, dentro da caixa, dentro do contêiner. Quase um mês sem sinal e sem ninguém mandando mensagem: tem gente no grupo da família que pagaria caro por isso.", "fatos": ["F21"], "palavras_en": 61, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "C4", "ato": "ACT 3 — THE OTHER ROAD", "trecho_en": "That case meets its buyer later, on a warehouse shelf in America. Ours already has one, which is why it is in the air. Why would a platform trade a fourteen-hour flight for two weeks at sea?", "trecho_pt": "Nos Estados Unidos, depois de 2025, a Temu passou a mandar os produtos campeões de venda em lote para galpões americanos, e a entregar a partir de lá. O motivo da troca foi imposto, e imposto é o que espera a nossa capinha quando o avião pousa.", "fatos": ["F21"], "palavras_en": 37, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/C4.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "D1", "ato": "ACT 4 — BORDER", "trecho_en": "The reason sits at the border, with the rest of the promise: who pays that tax, and who found a way around it. For years, a package worth 800 dollars or less could enter the United States without paying duty. The rule is called de minimis, from a Latin legal phrase meaning \"of the smallest things\".", "trecho_pt": "Quem cobra esses 5 reais, e quem ficou com a conta do imposto que sumiu: a resposta começa na alfândega. Desde 2023 existe o Programa Remessa Conforme. Ele funciona como um selo: a loja entra se quiser, passa pela certificação da Receita Federal, e o imposto já aparece para você na hora de fechar a compra.", "fatos": ["F7"], "palavras_en": 56, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/D1.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "D2", "ato": "ACT 4 — BORDER", "trecho_en": "The smallest things added up. In 2015, the system handled 134 million exempt shipments. By 2024, it handled 1.36 billion.", "trecho_pt": "Em agosto de 2024, as compras de até 50 dólares nessas lojas ganharam um imposto de importação de vinte por cento. A cobrança recebeu apelido na hora: taxa das blusinhas. É bem possível que seja a única blusinha do país com legislação própria.", "fatos": ["F2", "F1"], "palavras_en": 20, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "D3", "ato": "ACT 4 — BORDER", "trecho_en": "Somebody had to look inside them. In June 2019, federal auditors visited the international mail facility at JFK Airport in New York and watched 1.3 million pieces of mail arrive in four days. Officers screen that mail with scanners and dogs, and a computer system picks which pieces to open. The auditors then counted what share actually got inspected. In the published report, that number is blacked out.", "trecho_pt": "A taxa durou menos de dois anos. Na noite de 12 de maio de 2026, o presidente Lula assinou uma medida provisória e a Fazenda, por portaria, zerou o imposto de importação nessa faixa. A reação veio no dia seguinte. A Fiesp, a federação das indústrias de São Paulo, pediu que o Congresso devolvesse a medida. A Abit, que representa os fabricantes de roupa, lembrou que cerca de 80% das peças de vestuário vendidas no Brasil custam menos de 50 dólares.", "fatos": ["F9"], "palavras_en": 68, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "D4", "ato": "ACT 4 — BORDER", "trecho_en": "Washington used numbers like these to argue for a change. In the 2024 fiscal year, through July, 89 percent of cargo seizures had begun as exempt shipments, according to the Department of Homeland Security. On May 2, 2025, the exemption ended for parcels from China and Hong Kong.", "trecho_pt": "Do outro lado do balcão ficaram as plataformas e quem compra. Em junho, primeiro mês cheio da regra nova, entraram no país mais de 28 milhões de encomendas, quase um milhão por dia. Em setembro, o Congresso aprovou a medida, e ela virou lei.", "fatos": ["F8", "F6"], "palavras_en": 48, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "D5", "ato": "ACT 4 — BORDER", "trecho_en": "The platforms moved before the deadline. On April 25, 2025, Temu and Shein raised prices for American shoppers. A CNBC analysis found Temu adding import charges of up to 150 percent to some items. Bloomberg found kitchen towels on Shein up 377 percent. Kitchen towels had rarely made the business news before.", "trecho_pt": "A regra que vale hoje ficou assim. Até 50 dólares, somando produto, frete e seguro, o imposto de importação é zero. Acima disso, e até três mil dólares, ele é de 60%, com um desconto fixo de 30 dólares. Fora das lojas certificadas, são 60% cheios, cobrados quando o pacote já chegou. Quem tenta acompanhar essa regra precisa atualizar mais do que o app do rastreio.", "fatos": ["F74"], "palavras_en": 52, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "D6", "ato": "ACT 4 — BORDER", "trecho_en": "On August 29, 2025, the exemption ended for every other country. Postal traffic to the United States that day was 81 percent lower than a week earlier, according to the Universal Postal Union. At least 88 postal operators suspended some or all of their service to the country. The union's director general, Masahiko Metoki, said his agency was building a technical fix to get the mail moving again.", "trecho_pt": "O imposto federal zerou, e o do estado continua lá.", "fatos": ["F6", "F73"], "palavras_en": 68, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "D7", "ato": "ACT 4 — BORDER", "trecho_en": "A law now ends the exemption for good on July 1, 2027.", "trecho_pt": "", "fatos": ["F11"], "palavras_en": 12, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "E1", "ato": "ACT 5 — WHO PAID + BILL", "trecho_en": "So who paid? Customs counts its side this way. Between May and December of 2025, it collected more than one billion dollars in duties on 246 million low-value shipments. Seizures of unsafe goods rose 82 percent.", "trecho_pt": "O imposto do estado é o ICMS, e ele vai de 17% a 20%, conforme o lugar onde você mora. É ele que cobra os 5 reais da capinha. A primeira parte da promessa está paga: quem cobra é o seu estado.", "fatos": ["F12"], "palavras_en": 36, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/E1.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "E2", "ato": "ACT 5 — WHO PAID + BILL", "trecho_en": "The mail tells the other side. Customs' own filing shows about 205,000 postal shipments a day in 2024. By the fall of 2025, that was about 80,000 a day.", "trecho_pt": "E a conta do imposto que sumiu? O governo federal abriu mão de uma receita que, segundo a Abit, tinha rendido 1,78 bilhão de reais só nos quatro primeiros meses de 2026. A indústria e o varejo daqui dizem que a conta sobrou para eles, em venda perdida. Já as plataformas venderam mais: junho bateu recorde, com 2,6 bilhões de reais em compras num mês só. E a própria Receita avisou que ainda é cedo para saber se esse salto veio para ficar.", "fatos": ["F14", "F15"], "palavras_en": 29, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "../storyboard_v2/imgs/E2.png", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": "Imagem de teste da rodada anterior (storyboard_v2), prompt antigo em storyboard_v2/prompts.json. Ainda não aprovada."}, {"id": "E3", "ato": "ACT 5 — WHO PAID + BILL", "trecho_en": "The platforms found the way around, and you have already seen it: the warehouse, the container and the ship. Other governments picked their own answers. The European Union ended its 150-euro exemption on July 1, 2026. It now charges a temporary flat fee of three euros per item. Brazil went the opposite way: in May 2026, it cut its federal import tax to zero on certified purchases of up to 50 dollars.", "trecho_pt": "Lá fora, a maré foi para o outro lado. Os Estados Unidos deixavam entrar sem imposto pacotes de até 800 dólares, e acabaram com isso em 2025. A União Europeia encerrou a isenção de 150 euros em julho de 2026 e passou a cobrar uma taxa fixa de três euros por item. O Brasil foi na contramão, e a nossa capinha pegou carona.", "fatos": ["F28", "F64"], "palavras_en": 72, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "E4", "ato": "ACT 5 — WHO PAID + BILL", "trecho_en": "Our case took the plane, so it lands with the bill attached. After nearly thirteen thousand kilometers in a straight line, someone in Ohio opens the bag and gives the case four stars for fitting the phone.", "trecho_pt": "Ela pousa, passa pela fiscalização da Receita e segue de caminhão e de van, com um entregador que faz mais paradas no dia do que ônibus de linha. No prédio de quem comprou, passa a última noite da viagem na portaria, no meio das caixas do condomínio inteiro. De manhã, sai do saquinho e encaixa no celular de primeira.", "fatos": ["F26"], "palavras_en": 37, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "BILL", "ato": "ACT 5 — WHO PAID + BILL", "trecho_en": "Here is the bill for one parcel of 100 grams. The flight across the Pacific costs about 63 cents at the index rate, or about 80 cents at the holiday peak. At a duty rate of ten percent, which is our assumption for the math, a ten-dollar case owes one dollar at the border. The tax costs more than the flight. Across all low-value shipments from May to December 2025, customs collected about four dollars per parcel, on average.", "trecho_pt": "", "fatos": ["F24", "F76", "F25", "F27", "F13"], "palavras_en": 79, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}, {"id": "O1", "ato": "ACT 5 — WHO PAID + BILL", "trecho_en": "That is one parcel. In 2025, an estimated 942 million parcels still entered under the exemption. Since August 29, 2025, none of them can.", "trecho_pt": "A capinha chegou. De imposto federal, zero; de imposto do estado, uns 5 reais; de passagem de avião, uns 3 a 4. Agora multiplica isso por 28 milhões. Foi o que chegou ao Brasil só em junho.", "fatos": ["F4", "F6"], "palavras_en": 24, "sujeito": "", "camera": "", "luz": "", "efeitos": [], "arte": "A", "seed": 7, "imagem": "", "status": "pendente", "prompt_hash": "", "prompt_manual": "", "nota": ""}]}}</script>
+<script>
+"use strict";
+const BOOT = JSON.parse(document.getElementById('boot').textContent);
+const DIC = BOOT.dic;
+let DATA = BOOT.dados;
+let sujo = false;
+
+/* ---- hash do prompt (igual ao do portão checar_storyboard.py): cyrb53 sobre bytes UTF-8 ---- */
+function cyrb53(bytes){
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (const ch of bytes){ h1 = Math.imul(h1 ^ ch, 2654435761); h2 = Math.imul(h2 ^ ch, 1597334677); }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
+  h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
+  h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+}
+function hashPrompt(txt){ return cyrb53(new TextEncoder().encode(txt)).toString(16).padStart(14, '0'); }
+
+function montarPrompt(c){
+  if ((c.prompt_manual || '').trim()) return c.prompt_manual.trim();
+  const arte = DIC.arte.find(a => a[0].startsWith(c.arte + '.'));
+  const luz = DIC.luz[c.luz];
+  const partes = [arte ? arte[1] : '', c.sujeito, c.camera, luz ? luz[1] : ''];
+  (c.efeitos || []).forEach(k => partes.push(DIC.efeitos[k] ? DIC.efeitos[k][1] : ''));
+  partes.push(DIC.restricoes);
+  return partes.map(s => (s || '').trim()).filter(Boolean).join(', ');
+}
+
+function fmt(seg){ seg = Math.round(seg); return Math.floor(seg/60) + ':' + String(seg%60).padStart(2,'0'); }
+function wpm(){ return Number(document.getElementById('wpm').value) || 150; }
+function palavrasEf(c){ var t = c.sug && c.sug.trecho_en; return t !== undefined ? t.trim().split(/\s+/).filter(Boolean).length : (c.palavras_en || 0); }
+function segs(c){ return palavrasEf(c) * 60 / wpm(); }
+var CAMPOS_LS = ['sug','envios','sujeito','camera','luz','efeitos','arte','nota','prompt_manual','status'];
+function marcar(){ sujo = true;
+  try { localStorage.setItem('sbv2', JSON.stringify(DATA.cenas.map(function(c){ var o = {id: c.id}; CAMPOS_LS.forEach(function(k){ if (c[k] !== undefined) o[k] = c[k]; }); return o; }))); } catch(e){}
+}
+function restaurarLocal(){
+  DATA.cenas.forEach(function(c){ snap(c); });
+  try { var salvo = JSON.parse(localStorage.getItem('sbv2') || '[]');
+    salvo.forEach(function(o){ var c = DATA.cenas.find(function(x){ return x.id === o.id; }); if (c) CAMPOS_LS.forEach(function(k){ if (o[k] !== undefined) c[k] = o[k]; }); }); } catch(e){}
+}
+
+function h(tag, attrs, ...kids){
+  const e = document.createElement(tag);
+  for (const k in (attrs || {})){
+    if (k === 'class') e.className = attrs[k];
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  }
+  kids.flat().forEach(x => { if (x == null) return; e.append(x.nodeType ? x : document.createTextNode(String(x))); });
+  return e;
+}
+
+const ELS = {};   // id da cena -> elementos do cartão
+
+function atualizarTopo(){
+  let acum = 0; const total = DATA.cenas.reduce((s,c) => s + segs(c), 0);
+  const tl = document.getElementById('linha-tempo'); tl.textContent = '';
+  DATA.cenas.forEach(c => {
+    const s = segs(c); const ini = acum; acum += s;
+    const seg = h('div', {class: 's-' + c.status, title: c.id + ' · ' + fmt(ini) + '–' + fmt(acum) + ' · ' + c.status,
+      onclick: () => irPara(c.id)}, c.id);
+    seg.style.width = (total ? s / total * 100 : 0) + '%';
+    tl.append(seg);
+    const E = ELS[c.id];
+    if (E){ E.tempo.textContent = fmt(ini) + '–' + fmt(acum) + '  (' + Math.round(s) + ' s · ' + palavrasEf(c) + ' palavras)'; }
+  });
+  const t = document.getElementById('total');
+  const palavras = DATA.cenas.reduce((s,c) => s + palavrasEf(c), 0);
+  t.textContent = 'Total: ' + fmt(total) + ' (' + palavras + ' palavras · ' + DATA.cenas.length + ' cenas)';
+  const fora = total < 540 || total > 600;
+  t.className = fora ? 'alerta' : 'ok';
+  const av = document.getElementById('aviso-fora');
+  av.style.display = fora ? 'block' : 'none';
+  av.style.color = '#ff8a80';
+  av.textContent = fora ? ('ALERTA: ' + fmt(total) + ' está fora da meta de 9:00 a 10:00. ' + (total < 540 ? 'Faltam ' + fmt(540 - total) + ' para 9:00.' : 'Passou ' + fmt(total - 600) + ' de 10:00.')) : '';
+}
+
+function atualizarCena(c){
+  const E = ELS[c.id]; if (!E) return;
+  const p = montarPrompt(c);
+  if (document.activeElement !== E.prompt) E.prompt.value = p;
+  E.etq.textContent = c.status; E.etq.className = 'etq s-' + c.status;
+  E.resumo.textContent = (c.sujeito && c.sujeito.trim()) ? c.sujeito : '(sem sujeito ainda)';
+  E.resumo.className = 'resumo' + ((c.sujeito && c.sujeito.trim()) ? '' : ' sem-sujeito');
+  E.luzdica.textContent = c.luz && DIC.luz[c.luz] ? 'Clima: ' + DIC.luz[c.luz][2] : '';
+  E.artedica.textContent = (DIC.arte.find(a => a[0].startsWith(c.arte + '.')) || ['', '', ''])[2];
+  const mudou = (c.status === 'gerada' || c.status === 'aprovada') && c.prompt_hash && c.prompt_hash !== hashPrompt(p);
+  E.mudou.style.display = mudou ? 'inline-block' : 'none';
+  E.hashinfo.textContent = ((c.prompt_manual || '').trim() ? 'PROMPT EDITADO À MÃO (os menus não mexem mais nele). ' : '') + (c.prompt_hash ? 'hash do prompt gerado: ' + c.prompt_hash : 'sem hash (grava ao marcar "gerada")');
+  const img = c.imagem;
+  [E.mini, E.grande].forEach(el => { el.style.display = img ? '' : 'none'; if (img) el.src = img; });
+  E.semmini.style.display = img ? 'none' : '';
+  E.cartao.dataset.status = c.status;
+  E.cartao.dataset.semsujeito = (c.sujeito && c.sujeito.trim()) ? '0' : '1';
+}
+
+function aplicarFiltro(){
+  const f = document.getElementById('filtro').value;
+  DATA.cenas.forEach(c => {
+    const E = ELS[c.id]; if (!E) return;
+    const ver = f === 'todos' || (f === 'sem_sujeito' ? E.cartao.dataset.semsujeito === '1' : c.status === f);
+    E.cartao.style.display = ver ? '' : 'none';
+  });
+  document.querySelectorAll('.ato').forEach(a => {
+    let n = a.nextElementSibling, algum = false;
+    while (n && !n.classList.contains('ato')){ if (n.style.display !== 'none') algum = true; n = n.nextElementSibling; }
+    a.style.display = algum ? '' : 'none';
+  });
+}
+
+function irPara(id){
+  const E = ELS[id]; if (!E) return;
+  document.getElementById('filtro').value = 'todos'; aplicarFiltro();
+  E.cartao.classList.remove('fechado'); E.cartao.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function campo(rotulo, el, dica){ return h('div', {}, h('label', {class:'rot'}, rotulo), el, dica || null); }
+
+function criarCartao(c){
+  const E = {};
+  const input = (prop, tipo) => { const el = h('input', {type: tipo || 'text', style:'width:100%'}); el.value = c[prop] || '';
+    el.addEventListener('input', () => { c[prop] = tipo === 'number' ? Number(el.value) : el.value; marcar(); atualizarCena(c); }); return el; };
+
+  E.mini = h('img', {class:'mini', alt:''}); E.mini.onerror = () => { E.mini.style.display='none'; E.semmini.style.display=''; };
+  E.semmini = h('div', {class:'sem-mini'}, 'sem imagem');
+  E.etq = h('span', {class:'etq'});
+  E.tempo = h('span', {class:'tempo'});
+  E.resumo = h('span', {class:'resumo'});
+  E.mudou = h('span', {class:'mudou'}, 'PROMPT MUDOU depois da geração');
+  const cab = h('div', {class:'cab', onclick: () => E.cartao.classList.toggle('fechado')},
+    h('span', {class:'cid'}, c.id), E.mini, E.semmini, E.etq, E.tempo, E.mudou, E.resumo);
+
+  E.grande = h('img', {class:'grande', alt:''}); E.grande.onerror = () => { E.grande.style.display='none'; };
+  const chips = (c.fatos || []).map(f => h('span', {class:'chip'}, f));
+  const duas = h('div', {class:'duas'},
+    h('div', {class:'texto'}, h('b', {}, 'EN (voz)'), sugerivel(c, 'trecho_en', 'voz EN', 8), h('div', {}, chips.length ? chips : 'sem [F#]')),
+    h('div', {class:'texto'}, h('b', {}, 'PT-BR (voz)'), sugerivel(c, 'trecho_pt', 'voz PT', 8)));
+
+  const sujeito = h('textarea', {rows:'3', placeholder:'Sujeito em inglês: o que aparece na imagem (a cena em si)'});
+  sujeito.value = c.sujeito || '';
+  sujeito.addEventListener('input', () => { c.sujeito = sujeito.value; marcar(); atualizarCena(c); });
+
+  const camera = input('camera'); camera.setAttribute('list', 'cameras');
+  const luz = h('select', {}, h('option', {value:''}, '(sem luz definida)'),
+    Object.entries(DIC.luz).map(([k, v]) => h('option', {value:k}, v[0])));
+  luz.value = c.luz || '';
+  luz.addEventListener('change', () => { c.luz = luz.value; marcar(); atualizarCena(c); });
+  E.luzdica = h('div', {class:'dica'});
+
+  const efs = h('div', {class:'efs'});
+  Object.entries(DIC.efeitos).forEach(([k, v]) => {
+    const cb = h('input', {type:'checkbox'}); cb.checked = (c.efeitos || []).includes(k);
+    const lab = h('label', {title: v[2]}, cb, v[0]);
+    lab.classList.toggle('on', cb.checked);
+    cb.addEventListener('change', () => {
+      const s = new Set(c.efeitos || []); cb.checked ? s.add(k) : s.delete(k);
+      c.efeitos = Object.keys(DIC.efeitos).filter(x => s.has(x)); lab.classList.toggle('on', cb.checked); marcar(); atualizarCena(c); });
+    efs.append(lab);
+  });
+  efs.append(h('div', {class:'dica'}, 'Passe o mouse sobre cada efeito para ver o que ele faz.'));
+
+  const arte = h('select', {}, DIC.arte.map(a => h('option', {value: a[0].charAt(0)}, a[0])));
+  arte.value = c.arte || 'A';
+  arte.addEventListener('change', () => { c.arte = arte.value; marcar(); atualizarCena(c); });
+  E.artedica = h('div', {class:'dica'});
+
+  const status = h('select', {}, ['pendente','gerada','aprovada'].map(s => h('option', {value:s}, s)));
+  status.value = c.status || 'pendente';
+  status.addEventListener('change', () => {
+    c.status = status.value;
+    if (c.status !== 'pendente'){
+      if (!(c.sujeito || '').trim()) aviso('Atenção: esta cena não tem sujeito escrito.');
+      if (!c.prompt_hash) c.prompt_hash = hashPrompt(montarPrompt(c));
+    }
+    marcar(); atualizarCena(c); atualizarTopo(); aplicarFiltro(); });
+
+  const nota = h('textarea', {rows:'2', placeholder:'Nota livre (ex.: trocar luz, refazer, tela de texto)'}); nota.value = c.nota || '';
+  nota.addEventListener('input', () => { c.nota = nota.value; marcar(); });
+
+  E.prompt = h('textarea', {class:'prompt', rows:'6'});
+  E.prompt.addEventListener('input', () => { const v = E.prompt.value.trim(); if (v) c.prompt_manual = v; else delete c.prompt_manual; marcar(); atualizarCena(c); });
+  E.hashinfo = h('div', {class:'dica'});
+  const copiar = h('button', {class:'forte', onclick: () => copiarTexto(montarPrompt(c), copiar)}, 'Copiar prompt');
+  const refiz = h('button', {title:'Use depois de gerar de novo a imagem com o prompt atual', onclick: () => {
+    c.prompt_hash = hashPrompt(montarPrompt(c)); marcar(); atualizarCena(c); }}, 'Refiz a imagem com este prompt (atualiza o hash)');
+  const auto = h('button', {title:'Descarta a edição manual e remonta o prompt pelo sujeito, luz e efeitos', onclick: () => { delete c.prompt_manual; marcar(); atualizarCena(c); }}, 'Voltar ao prompt automático');
+
+  E.cartao = h('div', {class:'cartao fechado', id:'cena-' + c.id}, cab,
+    h('div', {class:'corpo'}, E.grande, duas,
+      h('div', {class:'grade'},
+        campo('Sujeito (inglês)', sujeito, envio(c, 'sujeito', 'sujeito da imagem', o => o.sujeito || '')),
+        h('div', {}, campo('Câmera', camera, h('div', {}, h('div', {class:'dica'}, 'ex.: wide shot, close-up shot, aerial view from above'), envio(c, 'camera', 'câmera', o => o.camera || ''))),
+          h('div', {style:'height:10px'}), campo('Semente (seed)', input('seed', 'number'))),
+        h('div', {}, campo('Luz', luz, h('div', {}, E.luzdica, envio(c, 'luz', 'luz', o => (DIC.luz[o.luz] || ['(sem luz)'])[0])))),
+        campo('Efeitos (pode marcar vários)', efs, envio(c, 'efeitos', 'efeitos', o => (o.efeitos || []).map(k => DIC.efeitos[k] ? DIC.efeitos[k][0] : k).join(', ') || '(nenhum)')),
+        h('div', {}, campo('Arte (A foto, G isométrico 3D)', arte, h('div', {}, E.artedica, envio(c, 'arte', 'arte', o => o.arte || 'A')))),
+        h('div', {}, campo('Status', status, envio(c, 'status', 'status', o => o.status || 'pendente')), h('div', {style:'height:10px'}), campo('Imagem (caminho a partir da pasta storyboard)', input('imagem'))),
+        campo('Nota', nota, envio(c, 'nota', 'nota', o => o.nota || ''))),
+      h('div', {style:'margin-top:12px'}, h('label', {class:'rot'}, 'Prompt final (estilo + sujeito + câmera + luz + efeitos + restrições)'),
+        E.prompt, h('div', {class:'linha'}, copiar, refiz, auto, envio(c, 'prompt', 'prompt final', o => montarPrompt(o)), E.hashinfo))));
+  ELS[c.id] = E;
+  return E.cartao;
+}
+
+
+var ORIG = {};
+function snap(c){ if (!ORIG[c.id]) ORIG[c.id] = JSON.parse(JSON.stringify(c)); return ORIG[c.id]; }
+function textoSug(id, e){ return 'SUGESTÃO · vídeo 2 · cena ' + id + ' · ' + e.rotulo + '\nPor: ' + e.autor + '\nORIGINAL: ' + (e.original || '(vazio)') + '\nSUGERIDO: ' + e.sugerido; }
+var EMAIL = 'bubmartproducoes@gmail.com';
+function gmailUrl(assunto, corpo){
+  var base = 'https://mail.google.com/mail/?view=cm&fs=1&authuser=' + encodeURIComponent(EMAIL) + '&to=' + encodeURIComponent(EMAIL) + '&su=' + encodeURIComponent(assunto) + '&body=';
+  var url = base + encodeURIComponent(corpo);
+  if (url.length > 7000) url = base + encodeURIComponent('(O texto das sugestões era grande demais para o link e foi COPIADO: cole aqui com Ctrl+V.)');
+  return url;
+}
+function aviso(m){
+  var d = document.getElementById('aviso');
+  if (!d){ d = document.createElement('div'); d.id = 'aviso'; d.style.cssText = 'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#fde047;color:#111;font-weight:700;padding:12px 18px;border:3px solid #000;border-radius:8px;z-index:99;font-size:16px;max-width:90vw'; document.body.append(d); }
+  d.textContent = m; d.style.display = 'block'; clearTimeout(window._ta); window._ta = setTimeout(function(){ d.style.display = 'none'; }, 4500);
+}
+function linkEnvio(montar){
+  var a = h('a', {class:'btn envio', target:'_blank', rel:'noopener', href:'https://mail.google.com', title:'Abre o Gmail com esta sugestão pronta para enviar (e copia o texto)'}, 'Enviar sugestão');
+  a.addEventListener('click', function(ev){ var u = montar(a); if (!u) ev.preventDefault(); else a.href = u; });
+  return a;
+}
+function enviarSug(c, chave, rotulo, orig, novo, btn){
+  if ((orig || '').trim() === (novo || '').trim()){ aviso('Nada mudou neste campo ainda.'); return null; }
+  c.envios = c.envios || [];
+  c.envios.push({campo: chave, rotulo: rotulo, original: orig, sugerido: novo, autor: document.getElementById('autor').value, em: new Date().toISOString()});
+  marcar(); var t = textoSug(c.id, c.envios[c.envios.length - 1]); copiarTexto(t, btn);
+  return gmailUrl('[STORYBOARD V2] sugestão cena ' + c.id + ' - ' + rotulo, t);
+}
+function envio(c, chave, rotulo, get){
+  var s = snap(c); var b = linkEnvio(function(a){ return enviarSug(c, chave, rotulo, get(s), get(c), a); });
+  return h('div', {class:'linha'}, b);
+}
+function sugerivel(c, chave, rotulo, rows){
+  var orig = c[chave] || '';
+  var ta = h('textarea', {rows: String(rows), placeholder: orig ? '' : 'sem texto neste idioma; escreva uma sugestão'});
+  ta.value = (c.sug && c.sug[chave] !== undefined) ? c.sug[chave] : orig;
+  var st = h('span', {class:'dica'});
+  function upd(){ st.textContent = ta.value.trim() !== orig.trim() ? 'alterado: o roteiro original não muda até a aprovação' : ''; }
+  ta.addEventListener('input', function(){
+    c.sug = c.sug || {};
+    if (ta.value.trim() === orig.trim()) delete c.sug[chave]; else c.sug[chave] = ta.value;
+    if (!Object.keys(c.sug).length) delete c.sug;
+    marcar(); upd(); if (chave === 'trecho_en'){ atualizarTopo(); atualizarCena(c); }
+  });
+  var env = linkEnvio(function(a){ return enviarSug(c, chave, rotulo, orig, ta.value, a); });
+  var des = h('button', {title:'Volta ao texto do roteiro'}, 'Desfazer');
+  des.onclick = function(){ ta.value = orig; ta.dispatchEvent(new Event('input')); };
+  upd();
+  return h('div', {}, ta, h('div', {class:'linha'}, env, des, st));
+}
+function todasSug(){ var r = []; DATA.cenas.forEach(function(c){ (c.envios || []).forEach(function(e){ r.push({cena: c.id, e: e}); }); }); return r; }
+function copiarTodasSug(btn){
+  var l = todasSug(); if (!l.length){ aviso('Ainda não há sugestões enviadas.'); return null; }
+  var t = l.map(function(x){ return textoSug(x.cena, x.e); }).join('\n\n---\n\n'); copiarTexto(t, btn);
+  return gmailUrl('[STORYBOARD V2] ' + l.length + ' sugestões de ' + document.getElementById('autor').value, t);
+}
+function copiarJsonSug(btn){
+  var l = todasSug(); if (!l.length){ aviso('Ainda não há sugestões enviadas.'); return; }
+  copiarTexto(JSON.stringify(l.map(function(x){ return Object.assign({cena: x.cena}, x.e); }), null, 1), btn);
+}
+
+function copiarTexto(txt, btn){
+  const ok = () => { const t = btn.textContent; btn.textContent = 'Copiado!'; setTimeout(() => btn.textContent = t, 1400); };
+  if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, () => fallback()); } else fallback();
+  function fallback(){ const ta = document.createElement('textarea'); ta.value = txt; document.body.append(ta); ta.select();
+    try { document.execCommand('copy'); ok(); } catch(e){ aviso('Não consegui copiar. Selecione o texto do prompt e use Ctrl+C.'); } ta.remove(); }
+}
+
+function desenhar(){
+  if (!window._restaurado){ window._restaurado = 1; restaurarLocal();
+    var bt = document.getElementById('b-todas'); bt.addEventListener('click', function(ev){ var u = copiarTodasSug(bt); if (!u) ev.preventDefault(); else bt.href = u; }); }
+  const lista = document.getElementById('lista'); lista.textContent = '';
+  for (const k in ELS) delete ELS[k];
+  const dl = h('datalist', {id:'cameras'}, ['wide shot','medium shot','close-up shot','extreme close-up shot','aerial view from above','top-down shot','low angle wide shot'].map(v => h('option', {value:v})));
+  lista.append(dl);
+  let atoAtual = null;
+  DATA.cenas.forEach(c => {
+    if (c.ato && c.ato !== atoAtual){ atoAtual = c.ato; lista.append(h('div', {class:'ato'}, c.ato)); }
+    lista.append(criarCartao(c));
+  });
+  DATA.cenas.forEach(atualizarCena);
+  atualizarTopo(); aplicarFiltro();
+}
+
+function salvar(){
+  const txt = JSON.stringify(DATA, null, 1) + '\n';
+  const blob = new Blob([txt], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'video2_cenas.json';
+  document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  sujo = false;
+}
+
+document.getElementById('wpm').value = DATA.wpm || 150;
+document.getElementById('wpm').addEventListener('input', atualizarTopo);
+document.getElementById('filtro').addEventListener('change', aplicarFiltro);
+
+document.getElementById('b-abrir-todos').addEventListener('click', () => document.querySelectorAll('.cartao').forEach(x => x.classList.remove('fechado')));
+document.getElementById('b-fechar-todos').addEventListener('click', () => document.querySelectorAll('.cartao').forEach(x => x.classList.add('fechado')));
+
+document.getElementById('arq').addEventListener('change', ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { try { const d = JSON.parse(r.result);
+      if (!Array.isArray(d.cenas)) throw new Error('o arquivo não tem a lista "cenas"');
+      DATA = d; document.getElementById('wpm').value = DATA.wpm || 150; sujo = false; desenhar();
+    } catch(e){ aviso('JSON inválido: ' + e.message); } };
+  r.readAsText(f, 'utf-8'); ev.target.value = '';
+});
+window.addEventListener('beforeunload', e => { if (sujo){ e.preventDefault(); e.returnValue = ''; } });
+desenhar();
+</script>
+</body>
+</html>
